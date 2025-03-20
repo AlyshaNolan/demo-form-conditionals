@@ -1,0 +1,23 @@
+<template x-data="{showInput: false}" x-if="showInput" x-init="
+        let targetIds = [{% for id in target_ids %}'{{ id }}',{% endfor %}]
+        let conditionalMet = Array.from(checked).some(element => '{{ target_ids }}'.includes(element.id))
+        if (conditionalMet){
+            showInput = true
+        }else{
+            showInput = false
+        }
+        $watch('checked', value => {
+            conditionalMet = Array.from(checked).some(element => '{{ target_ids }}'.includes(element.id))
+            if (conditionalMet){
+                showInput = true
+            }else{
+                showInput = false
+            }
+        });
+    ">
+    <div class="c-conditional-input">
+        {% for element in inputs %}
+            {% bookshop "{{element._bookshop_name}}" bind: element %}
+        {% endfor %}
+    </div>
+</template>

@@ -4,7 +4,14 @@
     action="{{ success_page }}"
     method="post"
     novalidate
-    onsubmit="return validateFormSubmit(event, this)">
+    onsubmit="return validateFormSubmit(event, this)"
+    x-data="{checked: []}"
+    x-init="
+        $el.addEventListener('input', (event) => {
+            checked = $el.querySelectorAll(':checked');
+            console.log(checked)
+        })
+    ">
 
     {% for element in form_elements %}
         {% bookshop "{{element._bookshop_name}}" bind: element %}

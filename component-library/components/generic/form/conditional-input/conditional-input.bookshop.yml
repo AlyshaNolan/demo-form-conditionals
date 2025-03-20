@@ -1,0 +1,34 @@
+# Metadata about this component, to be used in the CMS
+spec:
+  structures:
+    - form_blocks
+  label: "Conditional Input"
+  description: Add input(s) that can be shown/hidden based on another input(s)
+  icon: account_tree
+  tags: []
+  preview:
+    metadata:
+      - text: 
+          - key: target_ids
+        icon: adjust
+        
+# Defines the structure of this component, as well as the default values
+blueprint:
+  id:
+  target_ids:
+  inputs: [bookshop:structure:form_blocks]
+
+# Overrides any fields in the blueprint when viewing this component in the component browser
+preview:
+
+# Any extra CloudCannon inputs configuration to apply to the blueprint
+_inputs:
+  id:
+    comment: A unique identifier for this form element
+    disabled: true
+    instance_value: UUID
+  target_ids:
+    comment: The target ids for all elements that determine the visibility of this input
+    type: array
+  target_ids[*]:
+    type: text
