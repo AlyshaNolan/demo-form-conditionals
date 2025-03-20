@@ -29,12 +29,12 @@ content_blocks:
     content:
       id: contact-form
       heading:
-      description:
+      description: ''
       form:
         _bookshop_name: simple/form-builder
         id:
         form_submission_type: email/cloudcannon
-        inbox_key:
+        inbox_key: demo-conditionals-form
         subject:
         success_page: ''
         form_elements:
@@ -44,12 +44,55 @@ content_blocks:
             id:
             required: true
             helper_text:
-          - _bookshop_name: generic/form/email-input
-            label: Email address
+          - _bookshop_name: generic/form/radio-button-group
+            label: Preferred Contact Method
             id:
             required: true
-            placeholder: mybusiness@example.com
+            radio_buttons:
+              - label: Email
+                checked: false
+                radio_id: 825c7912-09f1-4f5b-aa8b-162fb5ecd1ac
+              - label: Phone
+                checked: false
+                radio_id: 7c753c64-212d-486b-b040-ddb20defbc60
+            arrangement: stacked
             helper_text:
+          - _bookshop_name: generic/form/conditional-input
+            id: 627d4452-013d-48e8-9aa0-8918f9440119
+            target_ids:
+              - 825c7912-09f1-4f5b-aa8b-162fb5ecd1ac
+            inputs:
+              - _bookshop_name: generic/form/email-input
+                label: Email
+                id:
+                required: true
+                placeholder: email@somewhere.com
+                helper_text:
+          - _bookshop_name: generic/form/conditional-input
+            id: 35e5a643-c995-4f3f-811c-8932c35a1681
+            target_ids:
+              - 7c753c64-212d-486b-b040-ddb20defbc60
+            inputs:
+              - _bookshop_name: generic/form/phone-input
+                label: Phone Number
+                placeholder:
+                id:
+                required: true
+                helper_text:
+              - _bookshop_name: generic/form/checkbox-group
+                label: Preferred Contact Time
+                id:
+                checkboxes:
+                  - label: AM
+                    id:
+                    checked: false
+                    required: false
+                  - label: PM
+                    id:
+                    checked: false
+                    required: false
+                arrangement: stacked
+                helper_text:
           - _bookshop_name: generic/form/text-area-input
             label: Message
             placeholder: Leave your message here
